@@ -1,0 +1,16 @@
+{
+  "name": "**服务接口文档",
+  "version": "1.0.0",
+  "title": "**服务接口文档",
+  "url": "https://XXXXX.com",
+  "description": "",
+  "order": [
+  ],
+  "header": {
+    "filename": "docheader.md"
+  },
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

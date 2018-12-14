@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.kaka.project.biz.mapper.PetsMapper" >
+    <resultMap id="BaseResultMap" type="com.kaka.project.biz.dataobject.PetsDO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="last_user" property="lastUser" jdbcType="VARCHAR" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="VARCHAR" />
+        
+    </resultMap>
+
+    <sql id="base_column_list" >
+        id ,name ,owner_id ,create_user ,last_user ,gmt_create ,gmt_modified ,status 
+    </sql>
+
+    <sql id="base_column_where" >
+                        <if test="id != null" >
+             AND id = #{id}
+           </if>
+                                <if test="name != null" >
+             AND name = #{name}
+           </if>
+                                <if test="ownerId != null" >
+             AND owner_id = #{ownerId}
+           </if>
+                                <if test="createUser != null" >
+             AND create_user = #{createUser}
+           </if>
+                                <if test="lastUser != null" >
+             AND last_user = #{lastUser}
+           </if>
+                                <if test="gmtCreate != null" >
+             AND gmt_create = #{gmtCreate}
+           </if>
+                                <if test="gmtModified != null" >
+             AND gmt_modified = #{gmtModified}
+           </if>
+                                <if test="status != null" >
+             AND status = #{status}
+           </if>
+                    </sql>
+
+    <update id="updateStatus" parameterType="com.kaka.project.biz.dataobject.PetsDO" >
+        UPDATE pets SET  gmt_modified = (UNIX_TIMESTAMP(now(3)) * 1000), last_user=#{lastUser}, status=#{status}
+        WHERE
+        id = #{id}
+    </update>
+
+</mapper>
